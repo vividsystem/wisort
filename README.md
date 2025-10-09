@@ -1,6 +1,8 @@
 # wisort
 Your sorting wizard
 
+## Requirements
+- python `>=3.14`
 ## Idea
 Create a file sorter/formatter that works like "magic" i.e. that manages many decisions smartly for the user.
 
