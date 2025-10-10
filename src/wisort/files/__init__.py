@@ -1,5 +1,5 @@
 from pathlib import Path
-from config import Config
+from wisort.config import Config
 
 
 def move(map: dict[Path, str], cfg: Config):

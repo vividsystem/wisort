@@ -1,4 +1,4 @@
-from config import Library
+from wisort.config import Library
 
 
 def lib_map(libraries: dict[str, Library]) -> dict[str, str]:

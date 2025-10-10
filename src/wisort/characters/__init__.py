@@ -1,8 +1,8 @@
 from pathlib import Path
-from config import loaded
-from files import move
-from files.sort import by_extension
-from files.move import lib_map
+from wisort.config import loaded
+from wisort.files import move
+from wisort.files.sort import by_extension
+from wisort.files.move import lib_map
 from time import sleep
 import typer
 

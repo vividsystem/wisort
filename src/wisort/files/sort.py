@@ -1,6 +1,6 @@
 from pathlib import Path, PurePath
 from pathspec import PathSpec
-from config import Config
+from wisort.config import Config
 
 
 def by_extension(
