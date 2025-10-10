@@ -67,7 +67,7 @@ jobs:
       - name: Retrieve release distributions
         uses: actions/download-artifact@v4
         with:
-          name: release-dists
+          name: dist
           path: dist/
 
       - name: Semantic Release
