@@ -25,3 +25,4 @@
     - [ ] diffing deduplication -> support for partial copies
 
 - Publish
+-> maybe add classifiers?
