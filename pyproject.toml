@@ -3,16 +3,21 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [tool.semantic_release]
-version_variable = "src/wisort/cli.py:__version__"
-upload_to_pypi = false
+commit_parser = "angular"
+upload_to_pypi = true 
 branch = "master"
 build_command = "uv build"
 commit_version_number = true
 tag_commit = true
 
+
+[tool.semantic_release.commit_parser_options]
+minor_tags = ["feat", "refactor"]
+patch_tags = ["fix", "perf", "ci", "docs", "chore"]
+
 [project]
 name = "wisort"
-version = "0.1.0"
+version = "0.0.0"
 description = "A system to sort your files"
 readme = "README.md"
 requires-python = ">=3.14"

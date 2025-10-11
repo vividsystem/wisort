@@ -38,42 +38,7 @@ jobs:
         with:
           name: dist
           path: dist/
-
   release:
-    name: SemVer Release
-    runs-on: ubuntu-latest
-    needs: build
-    permissions:
-      contents: write
-      # IMPORTANT: this permission is mandatory for trusted publishing
-      id-token: write
-      
-    environment:
-      name: pypi
-      url: https://pypi.org/p/wisort
-
-    steps:
-      - uses: actions/checkout@v5
-        with:
-          fetch-depth: 0
-      - name: Install uv
-        uses: astral-sh/setup-uv@v6
-
-      - name: Install Python (via uv)
-        run: uv python install
-
-      - name: Set up virtualenv
-        run: uv venv
-
-      - name: Install semantic-release
-        run: uv pip install python-semantic-release
-      - name: Retrieve release distributions
-        uses: actions/download-artifact@v4
-        with:
-          name: dist
-          path: dist/
-
-      - name: Semantic Release
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: uv run semantic-release publish
+    - uses: python-semantic-release/python-semantic-release@TAG 
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
