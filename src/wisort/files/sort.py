@@ -23,7 +23,8 @@ def by_extension(
             and cfg.orders.honor_gitignore
             and not entry.is_dir()
         ):
-            print(f"reading {entry.absolute()}")
+            if cfg.args.verbose:
+                print(f"reading {entry.absolute()}")
             patterns = entry.read_text().splitlines()
             local_spec += PathSpec.from_lines("gitwildmatch", patterns)
             continue
@@ -33,7 +34,7 @@ def by_extension(
             continue
 
         # recursively go through subdirs
-        if entry.is_dir():
+        if entry.is_dir() and cfg.orders.recurse:
             ps = by_extension(entry, cfg, local_spec)
             for key, p in ps.items():
                 paths.setdefault(key, []).extend(p)

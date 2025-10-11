@@ -1,14 +1,51 @@
-# wisort
-Your sorting wizard
+# wisort :magic_wand:
+Your file-sorting wizard :mage: that manages your file magically :crystal_ball:
 
 ## Requirements
 - python `>=3.14`
-## Idea
-Create a file sorter/formatter that works like "magic" i.e. that manages many decisions smartly for the user.
+- uv (heavily recommended)
 
-Sorting modes or "characters":
-- different modes do different magic/behave differently
+## Installation
+`wisort` is published on [PyPi](https://pypi.org/project/wisort/)
+```bash
+# using uv (recommended)
+uv tool install wisort
 
-Future ideas:
-too much just for siege but would be really cool: sorting mode that has a custom ai model that recognizes types of files: school, work, etc.
-this would solve the problem that normal sorting clis have that sorting by filetype doesnt understand the context
+# or with pip
+pip install wisort
+```
+if you want to just try out and run the project you can use `uvx wisort`
+
+## Concept and features
+`wisort` is a file sorting cli.
+It has different characters:
+- apprentice
+- magician
+- witch
+- dragon (coming soon)
+
+These are different magical users so they clean your file system differently.
+The apprentice is unsure about his work so he leave the most things to you to manually handle (confirmations when deleting etc.).
+The magician works way more autonomously but is very calm and doesn't destroy anything. This means a lot of capabilties with a good amount of safety.
+The witch is a brazen sorcerer not afraid of destruction. She cleans your filesystem very very thoroughly.
+
+(As of now magician and witch are not implemented)
+
+### The :sparkles: magic :sparkles:
+* smart unzip:
+archives can be automatically unpacked before being moved.
+they get moved into a new folder or directly to the destination depending on the content 
+* file duplicate removal strategies
+    - replace the (older) duplicate by symlink
+    - matching exact contents
+    - diffing contents
+    - intentional duplicate recognition -> diffing file names
+* auto-remove empty files
+* automatic move conflict resolution
+when the programm wants to move a file somewhere where a file with the same name already exist it can handle that automatically
+
+
+## Config
+
+## Usage
+For the exact CLI usage do `wisort --help`

@@ -1,11 +1,12 @@
 from pathlib import Path
-from wisort.config import Config
+from wisort.config import Config, Library
+from wisort.files.conflicts import move_conflict_resolion
+import questionary
 
 
-def move(map: dict[Path, str], cfg: Config):
-    for src, dest_str in map.items():
-        dest = Path(dest_str).expanduser().absolute()
-        print(dest)
+def move(map: dict[Path, Library], target: Path, cfg: Config):
+    for src, lib in map.items():
+        dest = Path(lib.destination).expanduser().absolute()
 
         if not dest.is_dir():
             raise Exception(
@@ -20,4 +21,21 @@ def move(map: dict[Path, str], cfg: Config):
         # unzip on move? -> smartly if zip has multiple elements zip to folder, otherwise zip to element directly
 
         # this doesnt support preserve file structure as of now
-        src.move(dest / src.name)
+
+        parent: Path = dest
+        name = src.name
+
+        if (
+            lib.flatten is not None and not lib.flatten
+        ) or cfg.orders.move_strategy == "preserveFolders":
+            parent = dest / src.relative_to(target).parent
+            parent.mkdir(exist_ok=True, parents=True)
+
+        df = parent / name
+
+        if df.exists():
+            # conflict resolution
+            (df, m) = move_conflict_resolion()
+            if not m:
+                continue
+        src.move(df)

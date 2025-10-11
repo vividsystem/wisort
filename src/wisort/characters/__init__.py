@@ -1,10 +1,11 @@
 from pathlib import Path
-from wisort.config import loaded
+from wisort.config import loaded, overwrite_with_cli_arguments
 from wisort.files import move
 from wisort.files.sort import by_extension
 from wisort.files.move import lib_map
-from time import sleep
+from typing import Optional
 import typer
+import questionary
 
 app = typer.Typer(
     help="""
@@ -27,11 +28,15 @@ def target_arg():
 
 
 def dry_run_opt():
-    return typer.Option(False, "--dry-run", "-d", help="Simulate actions")
+    return typer.Option(None, "--dry-run", "-d", help="Simulate actions")
 
 
 def verbose_opt():
-    return typer.Option(False, "--verbose", "-v", help="Verbose output")
+    return typer.Option(None, "--verbose", "-v", help="Verbose output")
+
+
+def force_opt():
+    return typer.Option(None, "--force", "-f", help="Force moving")
 
 
 def quiet_opt():
@@ -50,30 +55,26 @@ def main(ctx: typer.Context):
 )
 def apprentice(
     target: Path = target_arg(),
-    verbose: bool = verbose_opt(),
-    quiet: bool = quiet_opt(),
+    verbose: Optional[bool] = verbose_opt(),
+    quiet: Optional[bool] = quiet_opt(),
+    force: Optional[bool] = force_opt(),
 ):
-    if not quiet:
+    overwrite_with_cli_arguments(quiet, verbose, force)
+    if loaded.orders.move_conflict_strategy == "mode":
+        loaded.orders.move_conflict_strategy = "manual"
+    if not loaded.args.quiet:
         print("""
             The apprentice stubles into your condominium sleepily.
         """)
     if len(loaded.libraries) == 0:
-        if not quiet:
+        if not loaded.args.quiet:
             print("""
-            After a considerable amount of time searching for a library in your humble abode the apprentice realises there isn't one. 
-            The apprentice sighs...    
+            After a considerable amount of time searching for a library in your humble abode the apprentice realises there isn't one.
+            The apprentice sighs...
             'Where does master keep sending me?', he said to himself as he left your dwelling visibly frustrated.
             """)
         return
 
-    if not quiet:
-        print(f"""
-            Your {len(loaded.libraries.keys())} libraries excite the apprentice as he gazes at the rows of neatly stored books in all the bookshelves
-        """)
-        print("""
-            After a brief moment of reviewing your books he snorts. 
-            'Oh man the people nowadays really don't have structure in their libraries. I can see why my master sent me'
-            """)
     sorted = by_extension(target, loaded)
     l_map = lib_map(loaded.libraries)
 
@@ -85,21 +86,47 @@ def apprentice(
         for path in paths
     }
 
-    if not quiet:
+    if len(dest_map) == 0:
+        if not loaded.args.quiet:
+            print("""
+            'Damn this place is very tidy', he thought.
+                  """)
+            return
+
+    if not loaded.args.quiet:
+        print(f"""
+            Your {len(loaded.libraries.keys())} libraries excite the apprentice as he gazes at the rows of neatly stored books in all the bookshelves
+        """)
+        print("""
+            After a brief moment of reviewing your books he snorts.
+            'Oh man the people nowadays really don't have structure in their libraries. I can see why my master sent me'
+            """)
         print(f"""
             Ensuing a quick inspection of your spellbooks he realised there where only {len(dest_map)} books that needed organizing.
         """)
 
+    if loaded.args.verbose:
         for path, dest in dest_map.items():
             print(f"""          {path.relative_to(target)} → {dest}""")
 
+    if not loaded.args.quiet:
         print("""
             He remembered a nice spell his master thaught him the previous day to levitate and move objects.
             After an astoundingly high number of attempts he finally managed to move all books to their destinations using the spell. 
             Unsatisfied he sighed: 'If only I had done this normally without spells I would long be home by now.'.
             """)
 
-    move(dest_map, loaded)
+    if not loaded.args.quiet:
+        print("""
+            The apprentice comes up to you and asks:
+            'Can I organize your libraries?'
+            """)
+
+    run = questionary.confirm("Start file organization?").ask()
+    if not run:
+        return
+
+    move(dest_map, target, loaded)
 
     if loaded.orders.dedupe:
         pass
@@ -112,11 +139,16 @@ def apprentice(
 )
 def magician(
     target: Path = target_arg(),
-    dry_run: bool = dry_run_opt(),
     verbose: bool = verbose_opt(),
     quiet: bool = quiet_opt(),
 ):
-    print("A fully certified magician does your work")
+    overwrite_with_cli_arguments(quiet, verbose, None)
+    if loaded.orders.move_conflict_strategy == "mode":
+        loaded.orders.move_conflict_strategy = "rename"
+    if not loaded.args.quiet:
+        print("POOOOOOOOF! A magician appears out of thin air.")
+
+    print("The magician is still an apprentice. He hasn't finished his studies yet")
 
 
 @app.command(help="🧹 Full spellbook: sort, dedupe, and format code")
@@ -125,4 +157,4 @@ def witch(
     verbose: bool = verbose_opt(),
     quiet: bool = quiet_opt(),
 ):
-    pass
+    print("The witch is away on an adventure right now. Come back in the future!")
