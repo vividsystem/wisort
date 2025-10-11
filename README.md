@@ -31,7 +31,7 @@ The witch is a brazen sorcerer not afraid of destruction. She cleans your filesy
 
 (As of now magician and witch are not implemented)
 
-### The :sparkle: magic :sparkle:
+### The :sparkles: magic :sparkles:
 * smart unzip:
 archives can be automatically unpacked before being moved.
 they get moved into a new folder or directly to the destination depending on the content 
