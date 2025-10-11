@@ -42,7 +42,7 @@ jobs:
       # - name: Install semantic-release
       #   run: uv pip install python-semantic-release
 
-      - name: Semantic Release
-        use: python-semantic-release/python-semantic-release@v9
+      - name: Release Release
+        uses: python-semantic-release/python-semantic-release@v9
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
