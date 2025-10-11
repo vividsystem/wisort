@@ -50,4 +50,4 @@ jobs:
         with:
           name: dist
           path: dist/
-          if-no-files-found: error
+          if-no-files-found: ignore
