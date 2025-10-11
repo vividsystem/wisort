@@ -5,9 +5,9 @@ build-backend = "hatchling.build"
 [tool.semantic_release]
 version_source = "tag"
 upload_to_pypi = true 
+upload_to_vcs_release = true
 branch = "master"
 build_command = "uv build"
-commit_version_number = true
 tag_commit = true
 
 [project]
