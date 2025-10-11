@@ -5,6 +5,7 @@ concurrency:
   cancel-in-progress: true
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - master
@@ -40,13 +41,8 @@ jobs:
 
       - name: Install semantic-release
         run: uv pip install python-semantic-release
+
       - name: Semantic Release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: uv run semantic-release publish
-      - name: Upload release artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: dist
-          path: dist/
-          if-no-files-found: ignore
+        run: uv run semantic-release -vv publish
