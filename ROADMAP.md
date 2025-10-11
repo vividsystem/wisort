@@ -3,6 +3,20 @@
     - [x] Config
     - [x] Sort by filetype
     - [x] Bulk-move files
+
+- [ ] recover deleted dev branch
+    - [x] make config overwrite function
+        - [x] extend config with "args"
+    - [x] implement flatten
+    - interactive apprentice 
+        - [x] confirmation question using questionary
+
+    - [x] arbitrary conflict move resolution
+
+    - [ ] nicer readme?
+
+
+
 - [ ] Modes:
     - [ ] Apprentice:
         - [x] decent storytelling
@@ -19,10 +33,14 @@
 
 - "The magic" 
     - [ ] smart unzip
-    - [ ] preserve file structure on move
-    - [ ] replace by symlink
+    - [ ] dedupe strategies
+        - [ ] replace by symlink
+        - [ ] matching exact contents
+        - [ ] diffing contents
         - [ ] intentional duplicate recognition
-    - [ ] diffing deduplication -> support for partial copies
+    - [ ] autoremove empty files/semi-empty
+    - [ ] library collision
+    - [ ] move conflict resolution modes
 
 - Publish
 -> maybe add classifiers?

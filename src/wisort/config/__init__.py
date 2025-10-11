@@ -1,11 +1,12 @@
 from pydantic import BaseModel, Field
-from typing import Protocol, Literal
+from typing import Optional, Literal
 import json
 
 
 class Library(BaseModel):
     destination: str
     filetypes: list[str]
+    flatten: Optional[bool] = Field(default=None)
 
 
 class Orders(BaseModel):
@@ -17,24 +18,42 @@ class Orders(BaseModel):
     # auto: symlinks if duplicate looks intentional: completely other name, etc.
     dedupe_strategy: Literal["portal", "remove", "auto"] = Field(default="portal")
 
-    recursion_strategy: Literal["preserveFolders", "flatten"] = Field(default="flatten")
+    recurse: bool = Field(default=True)
+    move_strategy: Literal["preserveFolders", "flatten"] = Field(default="flatten")
     honor_gitignore: bool = Field(default=True)
     ignore_dotfiles: bool = Field(default=True)
+
+
+class Arguments(BaseModel):
+    quiet: bool = Field(default=False)
+    verbose: bool = Field(default=False)
 
 
 class Config(BaseModel):
     # spell = spell (dict[str])
     # spell = list of str -> e.g. list of filetypes
     # ...
-    spells: dict[str, str | list[str] | bool | int]
+    runes: dict[str, str | list[str] | bool | int]
     libraries: dict[str, Library] | list[Library]
     orders: Orders
+    args: Arguments
 
 
 def load(path: str = "./config.json") -> Config:
     with open(path, "r") as f:
         data = json.load(f)
     return Config(**data)
+
+
+def overwrite_with_cli_arguments(
+    quiet: Optional[bool], verbose: Optional[bool], force: Optional[bool]
+):
+    if quiet is not None:
+        loaded.args.quiet = quiet
+    if verbose is not None:
+        loaded.args.verbose = verbose
+    if force is not None:
+        loaded.args.force = force
 
 
 loaded = load()
