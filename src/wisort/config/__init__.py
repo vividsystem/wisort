@@ -27,6 +27,7 @@ class Orders(BaseModel):
 class Arguments(BaseModel):
     quiet: bool = Field(default=False)
     verbose: bool = Field(default=False)
+    force: bool = Field(default=False)
 
 
 class Config(BaseModel):

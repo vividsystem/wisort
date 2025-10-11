@@ -24,7 +24,7 @@ def move(map: dict[Path, Library], target: Path, cfg: Config):
         dfile = dest / src.name
         if (
             lib.flatten is not None and not lib.flatten
-        ) or cfg.orders.move_str == "preserveFolders":
+        ) or cfg.orders.move_strategy == "preserveFolders":
             new_parent = dest / src.relative_to(target).parent
             new_parent.mkdir(exist_ok=True, parents=True)
 
@@ -35,7 +35,7 @@ def move(map: dict[Path, Library], target: Path, cfg: Config):
             # TODO: replace home path by tilde
             if not cfg.args.force:
                 overwrite = questionary.confirm(
-                    f"{dfile.relative_to(dest)} already exists in {dest}"
+                    f"{dfile.relative_to(dest)} already exists in {dest}. Replace?"
                 ).ask()
 
                 if not overwrite:
