@@ -6,7 +6,7 @@ import json
 class Library(BaseModel):
     destination: str
     filetypes: list[str]
-    flatten: Optional[bool] = Field(default=None)
+    flatten: Optional[bool] | str = Field(default=None)
 
 
 class Orders(BaseModel):
@@ -20,6 +20,9 @@ class Orders(BaseModel):
 
     recurse: bool = Field(default=True)
     move_strategy: Literal["preserveFolders", "flatten"] = Field(default="flatten")
+    move_conflict_strategy: Literal["manual", "remove", "skip", "rename", "mode"] = (
+        Field(default="mode")
+    )
     honor_gitignore: bool = Field(default=True)
     ignore_dotfiles: bool = Field(default=True)
 
@@ -46,6 +49,7 @@ def load(path: str = "./config.json") -> Config:
     return Config(**data)
 
 
+# TODO: make this into decorator that wraps name?
 def overwrite_with_cli_arguments(
     quiet: Optional[bool], verbose: Optional[bool], force: Optional[bool]
 ):
@@ -54,6 +58,7 @@ def overwrite_with_cli_arguments(
     if verbose is not None:
         loaded.args.verbose = verbose
     if force is not None:
+        loaded.orders.move_conflict_strategy = "remove"
         loaded.args.force = force
 
 

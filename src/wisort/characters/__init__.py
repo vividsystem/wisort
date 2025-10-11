@@ -60,6 +60,8 @@ def apprentice(
     force: Optional[bool] = force_opt(),
 ):
     overwrite_with_cli_arguments(quiet, verbose, force)
+    if loaded.orders.move_conflict_strategy == "mode":
+        loaded.orders.move_conflict_strategy = "manual"
     if not loaded.args.quiet:
         print("""
             The apprentice stubles into your condominium sleepily.
@@ -67,8 +69,8 @@ def apprentice(
     if len(loaded.libraries) == 0:
         if not loaded.args.quiet:
             print("""
-            After a considerable amount of time searching for a library in your humble abode the apprentice realises there isn't one. 
-            The apprentice sighs...    
+            After a considerable amount of time searching for a library in your humble abode the apprentice realises there isn't one.
+            The apprentice sighs...
             'Where does master keep sending me?', he said to himself as he left your dwelling visibly frustrated.
             """)
         return
@@ -96,7 +98,7 @@ def apprentice(
             Your {len(loaded.libraries.keys())} libraries excite the apprentice as he gazes at the rows of neatly stored books in all the bookshelves
         """)
         print("""
-            After a brief moment of reviewing your books he snorts. 
+            After a brief moment of reviewing your books he snorts.
             'Oh man the people nowadays really don't have structure in their libraries. I can see why my master sent me'
             """)
         print(f"""
@@ -137,11 +139,16 @@ def apprentice(
 )
 def magician(
     target: Path = target_arg(),
-    dry_run: bool = dry_run_opt(),
     verbose: bool = verbose_opt(),
     quiet: bool = quiet_opt(),
 ):
-    print("A fully certified magician does your work")
+    overwrite_with_cli_arguments(quiet, verbose, None)
+    if loaded.orders.move_conflict_strategy == "mode":
+        loaded.orders.move_conflict_strategy = "rename"
+    if not loaded.args.quiet:
+        print("POOOOOOOOF! A magician appears out of thin air.")
+
+    print("The magician is still an apprentice. He hasn't finished his studies yet")
 
 
 @app.command(help="🧹 Full spellbook: sort, dedupe, and format code")
@@ -150,4 +157,4 @@ def witch(
     verbose: bool = verbose_opt(),
     quiet: bool = quiet_opt(),
 ):
-    pass
+    print("The witch is away on an adventure right now. Come back in the future!")

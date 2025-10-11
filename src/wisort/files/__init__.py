@@ -1,5 +1,6 @@
 from pathlib import Path
 from wisort.config import Config, Library
+from wisort.files.conflicts import move_conflict_resolion
 import questionary
 
 
@@ -21,24 +22,20 @@ def move(map: dict[Path, Library], target: Path, cfg: Config):
 
         # this doesnt support preserve file structure as of now
 
-        dfile = dest / src.name
+        parent: Path = dest
+        name = src.name
+
         if (
             lib.flatten is not None and not lib.flatten
         ) or cfg.orders.move_strategy == "preserveFolders":
-            new_parent = dest / src.relative_to(target).parent
-            new_parent.mkdir(exist_ok=True, parents=True)
+            parent = dest / src.relative_to(target).parent
+            parent.mkdir(exist_ok=True, parents=True)
 
-            dfile = new_parent / src.name
+        df = parent / name
 
-        if dfile.exists():
+        if df.exists():
             # conflict resolution
-            # TODO: replace home path by tilde
-            if not cfg.args.force:
-                overwrite = questionary.confirm(
-                    f"{dfile.relative_to(dest)} already exists in {dest}. Replace?"
-                ).ask()
-
-                if not overwrite:
-                    continue
-
-        src.move(dfile)
+            (df, m) = move_conflict_resolion()
+            if not m:
+                continue
+        src.move(df)

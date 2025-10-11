@@ -20,9 +20,8 @@
 - [ ] Modes:
     - [ ] Apprentice:
         - [x] decent storytelling
-        - [ ] interactive confirmation based stuff -> confirm every move, delete, symlink, dedupe
+        - [x] interactive confirmation based stuff -> handle conflict
         -> fitting the apprentices role as someone needing to be guided
-
     - [ ] Magician
         - [ ] doing all the stuff the apprentice does but with automatic resolving of issues
     - [ ] Witch
@@ -40,7 +39,7 @@
         - [ ] intentional duplicate recognition
     - [ ] autoremove empty files/semi-empty
     - [ ] library collision
-    - [ ] move conflict resolution modes
+    - [x] move conflict resolution modes
 
 - Publish
 -> maybe add classifiers?
