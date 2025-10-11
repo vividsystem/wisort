@@ -45,3 +45,4 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: uv run semantic-release publish
+      - uses: actions/upload-artifact@v4
