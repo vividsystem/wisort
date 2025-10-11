@@ -3,8 +3,8 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [tool.semantic_release]
-version_variable = "src/wisort/cli.py:__version__"
-upload_to_pypi = false
+version_source = "tag"
+upload_to_pypi = true 
 branch = "master"
 build_command = "uv build"
 commit_version_number = true
