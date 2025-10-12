@@ -16,6 +16,7 @@ permissions:
 
 jobs:
   build:
+    name: Build package
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -41,7 +42,7 @@ jobs:
           name: dist
           path: dist/
   release:
-    name: SemVer Release
+    name: Versioning and Github Release
     runs-on: ubuntu-latest
     needs: build
     permissions:
@@ -66,11 +67,6 @@ jobs:
           git_committer_email: "actions@users.noreply.github.com"
           build: false
           vcs_release: true
-
-      - name: Upload Artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: dist
 
   deploy:
     runs-on: ubuntu-latest
