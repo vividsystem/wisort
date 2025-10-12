@@ -1,9 +1,15 @@
 # CHANGELOG
 
 
+## v0.1.4 (2025-10-12)
+
+
 ## v0.1.3 (2025-10-12)
 
 ### Continuous Integration
+
+- Fixed environment mismatch
+  ([`9224ecd`](https://github.com/vividsystem/wisort/commit/9224ecd46263988f3a9b7e7d539c5bef174e74d5))
 
 - Removed deploy only on release condition
   ([`5b78100`](https://github.com/vividsystem/wisort/commit/5b781009c62a9a2443d62120600c1b560174388c))
