@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v0.1.2 (2025-10-12)
+
+### Continuous Integration
+
+- Fixed artifacts 2, added names to build and version steps
+  ([`b1393f1`](https://github.com/vividsystem/wisort/commit/b1393f138eadc16c77574d8df10ce3a4ae48b408))
+
+
 ## v0.1.1 (2025-10-12)
 
 ### Continuous Integration
