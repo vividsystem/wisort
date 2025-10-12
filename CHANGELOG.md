@@ -1,12 +1,23 @@
 # CHANGELOG
 
 
+## v0.1.3 (2025-10-12)
+
+### Continuous Integration
+
+- Removed deploy only on release condition
+  ([`5b78100`](https://github.com/vividsystem/wisort/commit/5b781009c62a9a2443d62120600c1b560174388c))
+
+
 ## v0.1.2 (2025-10-12)
 
 ### Continuous Integration
 
 - Fixed artifacts 2, added names to build and version steps
   ([`b1393f1`](https://github.com/vividsystem/wisort/commit/b1393f138eadc16c77574d8df10ce3a4ae48b408))
+
+- Fixed skipping deploy
+  ([`eb238aa`](https://github.com/vividsystem/wisort/commit/eb238aa2b5edea23ffe4f91870e28f2fa015f313))
 
 
 ## v0.1.1 (2025-10-12)
