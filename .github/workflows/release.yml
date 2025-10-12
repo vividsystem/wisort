@@ -76,13 +76,13 @@ jobs:
       contents: read
       id-token: write
 
-
     steps:
       - name: Setup | Download Build Artifacts
         uses: actions/download-artifact@v4
         id: artifact-download
         with:
           name: dist
+          path: dist/
 
 
       - name: Publish package distributions to PyPI
