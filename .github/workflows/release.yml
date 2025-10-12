@@ -35,11 +35,6 @@ jobs:
       - name: Build
         run: uv build
 
-      - name: Download dist artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: dist
-          path: dist
       - name: Upload dist artifact
         uses: actions/upload-artifact@v4
         with:
@@ -91,8 +86,7 @@ jobs:
         uses: actions/download-artifact@v4
         id: artifact-download
         with:
-          name: distribution-artifacts
-          path: dist
+          name: dist
 
       - name: Publish package distributions to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
