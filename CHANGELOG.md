@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v0.1.1 (2025-10-12)
+
+### Continuous Integration
+
+- Fixed artifact up and download
+  ([`a528149`](https://github.com/vividsystem/wisort/commit/a5281493ffbfca70037df7756aac1b3506845e46))
+
+
 ## v0.1.0 (2025-10-12)
 
 ### Bug Fixes
@@ -32,6 +40,9 @@
   ([`0a6293c`](https://github.com/vividsystem/wisort/commit/0a6293ced7faa5b50771cf0ec2b1fe6589680e53))
 
 ### Continuous Integration
+
+- Add checkout to build step
+  ([`1db10f5`](https://github.com/vividsystem/wisort/commit/1db10f5dd204860926589b97ca2e6208201112f9))
 
 - Fix 2
   ([`a889c49`](https://github.com/vividsystem/wisort/commit/a889c492b0561907f54f42180a0f3237fd1ba73c))
