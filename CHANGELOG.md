@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v0.1.5 (2025-10-12)
+
+### Continuous Integration
+
+- Fixed download artifact dest
+  ([`b879459`](https://github.com/vividsystem/wisort/commit/b87945995b33e4a7375dc72bf5647324bada7799))
+
+
 ## v0.1.4 (2025-10-12)
 
 
