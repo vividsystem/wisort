@@ -1,6 +1,8 @@
+from pathlib import Path
 from pydantic import BaseModel, Field
 from typing import Optional, Literal
 import json
+from os import environ
 
 
 class Library(BaseModel):
@@ -44,7 +46,9 @@ class Config(BaseModel):
     args: Arguments
 
 
-def load(path: str = "./config.json") -> Config:
+def load(
+    path: str = "./config.json",
+) -> Config:
     with open(path, "r") as f:
         data = json.load(f)
     return Config(**data)
@@ -63,4 +67,4 @@ def overwrite_with_cli_arguments(
         loaded.args.force = force
 
 
-loaded = load()
+loaded = load(Path(environ["XDG_CONFIG_HOME"]) / "wisort/config.json")
