@@ -25,6 +25,7 @@ class Orders(BaseModel):
     )
     honor_gitignore: bool = Field(default=True)
     ignore_dotfiles: bool = Field(default=True)
+    delete_empty_files: bool = Field(default=True)
 
 
 class Arguments(BaseModel):

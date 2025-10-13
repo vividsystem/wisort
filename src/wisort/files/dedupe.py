@@ -1,5 +1,5 @@
 from wisort.config import Config
-from wisort.files.utils import creation_time
+from wisort.files.utils import creation_time, is_empty
 from pathlib import Path
 from blake3 import blake3
 
@@ -13,6 +13,10 @@ def find_dupes(target: Path, cfg: Config) -> dict[str, list[Path]]:
             ds = find_dupes(file, cfg)
             for key, d in ds.items():
                 dupes.setdefault(key, [d]).extend(d)
+            continue
+
+        if is_empty(file) and cfg.orders.delete_empty_files:
+            file.unlink()
             continue
         file_bytes = file.read_bytes()
         digest = blake3(file_bytes).hexdigest()
