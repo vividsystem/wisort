@@ -3,6 +3,8 @@ from wisort.config import loaded, overwrite_with_cli_arguments
 from wisort.files import move
 from wisort.files.sort import by_extension
 from wisort.files.move import lib_map
+from wisort.files.dedupe import dedupe
+from wisort.runes import use_runes
 from typing import Optional
 import typer
 import questionary
@@ -59,6 +61,7 @@ def apprentice(
     quiet: Optional[bool] = quiet_opt(),
     force: Optional[bool] = force_opt(),
 ):
+    use_runes()
     overwrite_with_cli_arguments(quiet, verbose, force)
     if loaded.orders.move_conflict_strategy == "mode":
         loaded.orders.move_conflict_strategy = "manual"
@@ -158,3 +161,6 @@ def witch(
     quiet: bool = quiet_opt(),
 ):
     print("The witch is away on an adventure right now. Come back in the future!")
+    overwrite_with_cli_arguments(quiet, verbose, None)
+    use_runes()
+    dedupe(target, loaded)

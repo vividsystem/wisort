@@ -5,7 +5,7 @@ import json
 
 class Library(BaseModel):
     destination: str
-    filetypes: list[str]
+    filetypes: list[str] | str
     flatten: Optional[bool] | str = Field(default=None)
 
 
