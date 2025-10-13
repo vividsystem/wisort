@@ -1,12 +1,39 @@
 # CHANGELOG
 
 
+## v0.2.0 (2025-10-13)
+
+### Chores
+
+- Added `blake3`
+  ([`d532680`](https://github.com/vividsystem/wisort/commit/d532680a1eca722bb72769d616e02935877a6c08))
+
+### Documentation
+
+- Updated roadmap and readme
+  ([`c77d26a`](https://github.com/vividsystem/wisort/commit/c77d26a1d9001b4b887d91713e082ec1b08dca6a))
+
+### Features
+
+- Added default XDG_CONFIG_HOME path
+  ([`e1c282f`](https://github.com/vividsystem/wisort/commit/e1c282f7cd5015961cafa5f465ec5f0e8eff5b3d))
+
+- Added empty file removal
+  ([`5d2dd7f`](https://github.com/vividsystem/wisort/commit/5d2dd7f1f5948f96e8ce9932c057aaa67328c448))
+
+- Added runes and deduplication
+  ([`44bc320`](https://github.com/vividsystem/wisort/commit/44bc32019866e897bb9c6dba54e4990578a5379c))
+
+
 ## v0.1.5 (2025-10-12)
 
 ### Continuous Integration
 
 - Fixed download artifact dest
   ([`b879459`](https://github.com/vividsystem/wisort/commit/b87945995b33e4a7375dc72bf5647324bada7799))
+
+- Fixing version
+  ([`387ee0c`](https://github.com/vividsystem/wisort/commit/387ee0cb1a8b6188be5fdfc284f8930a262ca232))
 
 
 ## v0.1.4 (2025-10-12)
