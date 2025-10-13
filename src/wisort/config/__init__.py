@@ -1,11 +1,13 @@
+from pathlib import Path
 from pydantic import BaseModel, Field
 from typing import Optional, Literal
 import json
+from os import environ
 
 
 class Library(BaseModel):
     destination: str
-    filetypes: list[str]
+    filetypes: list[str] | str
     flatten: Optional[bool] | str = Field(default=None)
 
 
@@ -25,6 +27,7 @@ class Orders(BaseModel):
     )
     honor_gitignore: bool = Field(default=True)
     ignore_dotfiles: bool = Field(default=True)
+    delete_empty_files: bool = Field(default=True)
 
 
 class Arguments(BaseModel):
@@ -43,7 +46,9 @@ class Config(BaseModel):
     args: Arguments
 
 
-def load(path: str = "./config.json") -> Config:
+def load(
+    path: str = "./config.json",
+) -> Config:
     with open(path, "r") as f:
         data = json.load(f)
     return Config(**data)
@@ -62,4 +67,4 @@ def overwrite_with_cli_arguments(
         loaded.args.force = force
 
 
-loaded = load()
+loaded = load(Path(environ["XDG_CONFIG_HOME"]) / "wisort/config.json")

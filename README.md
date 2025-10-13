@@ -17,10 +17,10 @@ pip install wisort
 if you want to just try out and run the project you can use `uvx wisort`
 
 ## Concept and features
-`wisort` is a file sorting cli.
+`wisort` is supposed to be a file sorting cli. Below can be seen my ideas for the project even if they might not be fully implemented yet. To see the progress go read the [ROADMAP](./ROADMAP.md)
 It has different characters:
 - apprentice
-- magician
+- magician (coming soon)
 - witch
 - dragon (coming soon)
 
@@ -44,8 +44,33 @@ they get moved into a new folder or directly to the destination depending on the
 * automatic move conflict resolution
 when the programm wants to move a file somewhere where a file with the same name already exist it can handle that automatically
 
-
 ## Config
+Configuration is done through `config.json` file in `$XDG_CONFIG_HOME/wisort/`
+
+Example:
+```json
+{
+	"runes": {
+		"images": ["png", "jpeg", "jpg"]
+	},
+	"libraries": {
+		"pics": {
+			"destination": "~/Pictures/",
+			"filetypes": "@images",
+			"flatten": true
+		}
+	},
+	"orders": {
+		"recurse": true,
+		"honor_gitignore": true,
+		"ignore_dotfiles": true
+	},
+	"args": {
+		"quiet": true,
+		"force": false
+	}
+}
+```
 
 ## Usage
 For the exact CLI usage do `wisort --help`

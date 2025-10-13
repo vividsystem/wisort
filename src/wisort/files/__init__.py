@@ -1,6 +1,6 @@
 from pathlib import Path
 from wisort.config import Config, Library
-from wisort.files.conflicts import move_conflict_resolion
+from wisort.files.conflicts import move_conflict_resolution
 import questionary
 
 
@@ -35,7 +35,9 @@ def move(map: dict[Path, Library], target: Path, cfg: Config):
 
         if df.exists():
             # conflict resolution
-            (df, m) = move_conflict_resolion()
+            (df, m) = move_conflict_resolution(name, parent, target, dest, cfg)
             if not m:
+                if cfg.args.verbose:
+                    print(f"skipped {df.relative_to(dest)}")
                 continue
         src.move(df)

@@ -33,11 +33,12 @@
 - "The magic" 
     - [ ] smart unzip
     - [ ] dedupe strategies
-        - [ ] replace by symlink
-        - [ ] matching exact contents
+        - [x] replace by symlink
+        - [x] matching exact contents
         - [ ] diffing contents
         - [ ] intentional duplicate recognition
-    - [ ] autoremove empty files/semi-empty
+    - [x] autoremove empty files/semi-empty
+        - [ ] semi empty/boilerplate
     - [ ] library collision
     - [x] move conflict resolution modes
 
