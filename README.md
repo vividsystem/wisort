@@ -44,8 +44,33 @@ they get moved into a new folder or directly to the destination depending on the
 * automatic move conflict resolution
 when the programm wants to move a file somewhere where a file with the same name already exist it can handle that automatically
 
-
 ## Config
+Configuration is done through `config.json` file in `$XDG_CONFIG_HOME/wisort/`
+
+Example:
+```json
+{
+	"runes": {
+		"images": ["png", "jpeg", "jpg"]
+	},
+	"libraries": {
+		"pics": {
+			"destination": "~/Pictures/",
+			"filetypes": "@images",
+			"flatten": true
+		}
+	},
+	"orders": {
+		"recurse": true,
+		"honor_gitignore": true,
+		"ignore_dotfiles": true
+	},
+	"args": {
+		"quiet": true,
+		"force": false
+	}
+}
+```
 
 ## Usage
 For the exact CLI usage do `wisort --help`
