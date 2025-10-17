@@ -28,20 +28,25 @@ def find_dupes(target: Path, cfg: Config) -> dict[str, list[Path]]:
 
 def dedupe(target: Path, cfg: Config):
     dupes = find_dupes(target, cfg)
-    for digest, duplicates in dupes:
+    for digest, duplicates in dupes.items():
         if len(duplicates) == 1:
             continue
 
         sorted_dupes = sorted(duplicates, key=lambda p: creation_time(p))
-        for i, dupe in sorted_dupes:
-            if i == 0:
+        original = sorted_dupes[0].resolve()
+        for dupe in sorted_dupes:
+            if original == dupe:
                 continue
             match cfg.orders.dedupe_strategy:
                 case "portal":
+                    dupe.unlink()
                     dupe.symlink_to(sorted_dupes[0])
-                    print(f"symlinked {dupe.relative_to(target)} to {sorted_dupes[0]}")
+                    if cfg.args.verbose:
+                        print(
+                            f"symlinked {dupe.relative_to(target)} to {sorted_dupes[0]}"
+                        )
 
                 case "remove":
-                    if cfg.args.verbose():
+                    if cfg.args.verbose:
                         print(f"deleted {dupe.relative_to(target)}")
                     dupe.unlink()
