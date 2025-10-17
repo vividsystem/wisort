@@ -67,4 +67,9 @@ def overwrite_with_cli_arguments(
         loaded.args.force = force
 
 
+config_home = (
+    Path(environ["XDG_CONFIG_HOME"])
+    if "XDG_CONFIG_HOME" in environ
+    else Path(environ["HOME"] / ".config")
+)
 loaded = load(Path(environ["XDG_CONFIG_HOME"]) / "wisort/config.json")
