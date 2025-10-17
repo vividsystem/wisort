@@ -63,6 +63,8 @@ def apprentice(
 ):
     use_runes()
     overwrite_with_cli_arguments(quiet, verbose, force)
+    if loaded.args.verbose:
+        print(loaded)
     if loaded.orders.move_conflict_strategy == "mode":
         loaded.orders.move_conflict_strategy = "manual"
     if not loaded.args.quiet:
@@ -160,7 +162,8 @@ def witch(
     verbose: bool = verbose_opt(),
     quiet: bool = quiet_opt(),
 ):
-    print("The witch is away on an adventure right now. Come back in the future!")
     overwrite_with_cli_arguments(quiet, verbose, None)
     use_runes()
+    if loaded.args.verbose:
+        print(loaded)
     dedupe(target, loaded)
