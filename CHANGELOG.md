@@ -1,12 +1,18 @@
 # CHANGELOG
 
 
+## v0.2.3 (2025-10-18)
+
+
 ## v0.2.2 (2025-10-18)
 
 ### Continuous Integration
 
 - Changing build to second step to implement the versioning
   ([`c75848c`](https://github.com/vividsystem/wisort/commit/c75848c1416f6393821ba48969da87dd7719ee46))
+
+- Fixing incorrect build step dependencies
+  ([`c4c51d0`](https://github.com/vividsystem/wisort/commit/c4c51d0d39a450b30dd758e0cad43510f774967f))
 
 
 ## v0.2.1 (2025-10-18)
