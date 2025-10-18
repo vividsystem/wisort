@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v0.2.4 (2025-10-18)
+
+### Bug Fixes
+
+- Quiet option always returns False as default
+  ([`3fbcb44`](https://github.com/vividsystem/wisort/commit/3fbcb44b40da41df765c2bcd34c771cf96ba74b9))
+
+
 ## v0.2.3 (2025-10-18)
 
 
