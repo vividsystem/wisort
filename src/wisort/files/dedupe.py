@@ -28,10 +28,11 @@ def find_dupes(target: Path, cfg: Config) -> dict[str, list[Path]]:
 
 def dedupe(target: Path, cfg: Config):
     dupes = find_dupes(target, cfg)
+    n = 0
     for digest, duplicates in dupes.items():
         if len(duplicates) == 1:
             continue
-
+        n += len(duplicates) - 1
         sorted_dupes = sorted(duplicates, key=lambda p: creation_time(p))
         original = sorted_dupes[0].resolve()
         for dupe in sorted_dupes:
@@ -50,3 +51,5 @@ def dedupe(target: Path, cfg: Config):
                     if cfg.args.verbose:
                         print(f"deleted {dupe.relative_to(target)}")
                     dupe.unlink()
+    if cfg.args.verbose:
+        print(f"{n} duplicates where taken care of")

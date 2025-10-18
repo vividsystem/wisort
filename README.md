@@ -73,6 +73,23 @@ Example:
 	}
 }
 ```
+### `"runes"` 
+Runes are like a key-value store for your config file to create shorthands like above. This works with all filetypes supported by json as values.
+### `"orders"` - Specify wisort's behaviour
+| Order | Default | Description | 
+| ----- | ------- | ----------- |
+| `"recurse"` | `true` | Enables recursion through subdirectories of the target directory |
+| `"dedupe_strategy"` | `"portal"` | Specifies how to resolve duplicates. `"portal"` replaces the duplicate files by symlinks to the original. `"remove"` deletes the duplicates. |
+| `"move_strategy"` | `"flatten"` | By default this flattens out the file structure in the destination and doesn't preserve the file structure || `"move_conflict_strategy"` | `"mode"` | This determines what to do when a file is already present where another is supposed to be moved. When configured to `"manual"` the user is prompted to decide n a strategy on every conflict. `"remove"` removes the original, `"skip"` doesn't move the file on duplicate and using `"rename"` the user is prompted to rename the original filename. `"mode"` is a placeholder to decide the strategy based on the characters. |
+| `"honor_gitignore"` | `true` | This option specifies wether to ignore files as specified in the respective `.gitignore` files |
+| `"delete_empty_files` | `true` | Wether to delete empty files on deduplication or not |
+
+### `"args"` - Default overwrite for CLI arguments
+| Argument | Default | Description |
+| -------- | ------- | ----------- |
+| `"quiet"` | `false` | Disable dialog and non critical messages |
+| `"force"` | `false` | Overwrites move_conflict_strategy to remove |
+| `"verbose"` | `false` | Shows more information |
 
 ## Usage
 For the exact CLI usage do `wisort --help`
