@@ -1,6 +1,28 @@
 # CHANGELOG
 
 
+## v0.2.1 (2025-10-18)
+
+### Bug Fixes
+
+- Added config printing in verbose mode
+  ([`50ed597`](https://github.com/vividsystem/wisort/commit/50ed597527310f620de67d77e35d5e87ccd09983))
+
+- Added fallback config path if `$XDG_CONFIG_HOME` is not set
+  ([`c082f85`](https://github.com/vividsystem/wisort/commit/c082f858d4626137ab3b3ddd4586f9e6f0400385))
+
+- Added file removal before symlinking in portal mode
+  ([`1556bae`](https://github.com/vividsystem/wisort/commit/1556bae591bb1efe7b630eb8bb48e1648bb06558))
+
+- Handle edge case where st_birthtime doesn't get set by fs
+  ([`801a71b`](https://github.com/vividsystem/wisort/commit/801a71b0d85b3b5e2724aa36e9fc332d3410b2ab))
+
+### Documentation
+
+- Added requirement for UNIX OS
+  ([`113c5e2`](https://github.com/vividsystem/wisort/commit/113c5e299da557372fc70194fdad73e4d7edc860))
+
+
 ## v0.2.0 (2025-10-13)
 
 ### Chores
