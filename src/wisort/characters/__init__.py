@@ -42,7 +42,7 @@ def force_opt():
 
 
 def quiet_opt():
-    return typer.Option(False, "--quiet", "-q", help="Suppress non-critical output")
+    return typer.Option(None, "--quiet", "-q", help="Suppress non-critical output")
 
 
 @app.callback(invoke_without_command=True)
