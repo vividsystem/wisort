@@ -2,7 +2,10 @@ from pathlib import Path
 
 
 def creation_time(p: Path):
-    return p.stat().st_birthtime
+    stat = p.stat()
+    if hasattr(stat, "st_birthtime"):
+        return stat.st_birthtime
+    return stat.st_mtime
 
 
 def file_size(p: Path):
