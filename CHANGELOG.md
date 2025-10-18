@@ -1,6 +1,19 @@
 # CHANGELOG
 
 
+## v0.3.0 (2025-10-18)
+
+### Documentation
+
+- Added better description of configuration
+  ([`c1739ee`](https://github.com/vividsystem/wisort/commit/c1739ee7e641eff4ecc34e5c4588c376d22363ab))
+
+### Features
+
+- Made dedupe functionality more verbose
+  ([`5b0199c`](https://github.com/vividsystem/wisort/commit/5b0199cba2c2d1c94014160fc9bf70184c3c2d75))
+
+
 ## v0.2.4 (2025-10-18)
 
 ### Bug Fixes
