@@ -23,7 +23,7 @@ Make sure to copy the default `config.json` to `$XDG_CONFIG_HOME`(fallback to `$
 It has different characters:
 - apprentice
 - magician (coming soon)
-- witch
+- witch (not fully implemented yet - only deduplication as of now)
 - dragon (coming soon)
 
 These are different magical users so they clean your file system differently.
