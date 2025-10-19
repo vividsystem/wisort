@@ -1,6 +1,9 @@
 # wisort :magic_wand:
 Your file-sorting wizard :mage: that manages your file magically :crystal_ball:
 
+[Demo video](https://hc-cdn.hel1.your-objectstorage.com/s/v3/dd46e010fbe6f39cc6f77a354aec082f867420af_wisort_demo.mp4)
+
+
 ## Requirements
 - python `>=3.14`
 - uv (heavily recommended)
