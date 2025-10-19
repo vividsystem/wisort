@@ -1,6 +1,16 @@
 # CHANGELOG
 
 
+## v0.3.1 (2025-10-19)
+
+### Documentation
+
+- Added demo video to readme
+  ([`1291588`](https://github.com/vividsystem/wisort/commit/12915883e743d7af3ec7afba6bb792b8659c2465))
+
+Included a link to the demo video for better user guidance.
+
+
 ## v0.3.0 (2025-10-18)
 
 ### Documentation
